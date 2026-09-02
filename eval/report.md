@@ -38,6 +38,12 @@ artifacts in `eval/artifacts/` by `src/metrics/compute.ts` (single writer).
 Verifier p99 < 5 ms over 10,000 pure in-process decisions (bench-asserted).
 Reproduce: `npm test tests/core/verifier` (prints p50/p99).
 
+## Intent extraction
+
+Model: stub-deterministic — accuracy 16.7% over 42 labeled
+utterances; unsafe-under-constraint rate 0.0%.
+Corpus is small and English-only (SYNTHETIC).
+
 ## Labels & limitations
 
 - All trace/suite numbers are **SYNTHETIC**: seeded generator, fixture merchant, in-memory gateway.

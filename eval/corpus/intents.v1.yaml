@@ -1,0 +1,171 @@
+# RupeeProof intent corpus (T16) — SYNTHETIC, human-authored.
+# gold = expected ConstraintsDraft; null gold = ambiguous, expected clarify.
+entries:
+  - id: c001
+    utterance: "Buy these headphones from SonicStore for no more than ₹2,000."
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c002
+    utterance: "Buy these headphones from SonicStore under ₹2,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c003
+    utterance: "Buy these headphones from SonicStore for no more than ₹1,500"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 150000, currency: INR, item_skus: [hp-001] }
+  - id: c004
+    utterance: "Get me the SonicPods headphones from SonicStore, budget max ₹2,500"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 250000, currency: INR, item_skus: [hp-001] }
+  - id: c005
+    utterance: "Purchase hp-001 from sonicstore with a cap of 200000 paise"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c006
+    utterance: "Order the headphones from SonicStore if they cost less than ₹1,800"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 180000, currency: INR, item_skus: [hp-001] }
+  - id: c007
+    utterance: "Buy headphones at SonicStore, spending limit ₹2,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c008
+    utterance: "Please buy the SonicPods from SonicStore for at most ₹2,200"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 220000, currency: INR, item_skus: [hp-001] }
+  - id: c009
+    utterance: "Grab those headphones from SonicStore, don't spend over ₹1,999"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 199900, currency: INR, item_skus: [hp-001] }
+  - id: c010
+    utterance: "I want the hp-001 headphones from SonicStore, ceiling ₹3,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 300000, currency: INR, item_skus: [hp-001] }
+  - id: c011
+    utterance: "Buy a mechanical keyboard from TechBazar for no more than ₹3,500"
+    ambiguity: clear
+    gold: { merchant_id: techbazar, max_amount_paise: 350000, currency: INR, item_skus: [kb-001] }
+  - id: c012
+    utterance: "Get the kb-001 keyboard from techbazar, budget ₹4,000"
+    ambiguity: clear
+    gold: { merchant_id: techbazar, max_amount_paise: 400000, currency: INR, item_skus: [kb-001] }
+  - id: c013
+    utterance: "Order the keyboard at TechBazar if under ₹3,000"
+    ambiguity: clear
+    gold: { merchant_id: techbazar, max_amount_paise: 300000, currency: INR, item_skus: [kb-001] }
+  - id: c014
+    utterance: "Purchase kb-001 from techbazar with a cap of 349900 paise"
+    ambiguity: clear
+    gold: { merchant_id: techbazar, max_amount_paise: 349900, currency: INR, item_skus: [kb-001] }
+  - id: c015
+    utterance: "Buy the TechBazar keyboard, max spend ₹3,499"
+    ambiguity: clear
+    gold: { merchant_id: techbazar, max_amount_paise: 349900, currency: INR, item_skus: [kb-001] }
+  - id: c016
+    utterance: "Buy the novel from BookHaven for no more than ₹500"
+    ambiguity: clear
+    gold: { merchant_id: bookhaven, max_amount_paise: 50000, currency: INR, item_skus: [bk-001] }
+  - id: c017
+    utterance: "Get me bk-001 from bookhaven under ₹600"
+    ambiguity: clear
+    gold: { merchant_id: bookhaven, max_amount_paise: 60000, currency: INR, item_skus: [bk-001] }
+  - id: c018
+    utterance: "Order the book at BookHaven, spending limit ₹450"
+    ambiguity: clear
+    gold: { merchant_id: bookhaven, max_amount_paise: 45000, currency: INR, item_skus: [bk-001] }
+  - id: c019
+    utterance: "Buy bk-001 from bookhaven, cap ₹550"
+    ambiguity: clear
+    gold: { merchant_id: bookhaven, max_amount_paise: 55000, currency: INR, item_skus: [bk-001] }
+  - id: c020
+    utterance: "Purchase the BookHaven novel for at most ₹499"
+    ambiguity: clear
+    gold: { merchant_id: bookhaven, max_amount_paise: 49900, currency: INR, item_skus: [bk-001] }
+  - id: c021
+    utterance: "Buy these headphones from SonicStore for no more than ₹2,000 please"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c022
+    utterance: "from sonicstore buy headphones for no more than ₹2,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c023
+    utterance: "headphones, sonicstore, max ₹2,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c024
+    utterance: "Buy headphones from SonicStore for no more than ₹2,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c025
+    utterance: "Would you buy the SonicPods from SonicStore if they're under ₹2,000?"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c026
+    utterance: "Buy these headphones from SonicStore for no more than ₹1,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 100000, currency: INR, item_skus: [hp-001] }
+  - id: c027
+    utterance: "Buy these headphones from SonicStore for no more than ₹5,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 500000, currency: INR, item_skus: [hp-001] }
+  - id: c028
+    utterance: "Pick up the hp-001 at SonicStore, do not exceed ₹2,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c029
+    utterance: "Buy a keyboard and headphones from TechBazar for no more than ₹5,500"
+    ambiguity: clear
+    gold: { merchant_id: techbazar, max_amount_paise: 550000, currency: INR, item_skus: [kb-001] }
+  - id: c030
+    utterance: "Get me the cheapest SonicPods from SonicStore below ₹2,100"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 210000, currency: INR, item_skus: [hp-001] }
+  - id: c031
+    utterance: "BUY these headphones from SonicStore for NO MORE THAN ₹2,000"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c032
+    utterance: "Buy these headphones from SonicStore for no more than ₹2,000!!"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: c033
+    utterance: "for no more than ₹2,000, buy these headphones from SonicStore"
+    ambiguity: clear
+    gold: { merchant_id: sonicstore, max_amount_paise: 200000, currency: INR, item_skus: [hp-001] }
+  - id: a001
+    utterance: "Buy these headphones from SonicStore"
+    ambiguity: ambiguous
+    gold: null
+  - id: a002
+    utterance: "Buy these headphones for no more than ₹2,000"
+    ambiguity: ambiguous
+    gold: null
+  - id: a003
+    utterance: "Buy something from SonicStore for no more than ₹1,000"
+    ambiguity: ambiguous
+    gold: null
+  - id: a004
+    utterance: "Get me a good deal on headphones"
+    ambiguity: ambiguous
+    gold: null
+  - id: a005
+    utterance: "Buy it"
+    ambiguity: ambiguous
+    gold: null
+  - id: a006
+    utterance: "Order from SonicStore"
+    ambiguity: ambiguous
+    gold: null
+  - id: a007
+    utterance: "Purchase headphones, maybe ₹2,000 or so?"
+    ambiguity: ambiguous
+    gold: null
+  - id: a008
+    utterance: "Buy the book and maybe a keyboard too, whatever's cheaper"
+    ambiguity: ambiguous
+    gold: null
+  - id: a009
+    utterance: "Buy headphones from SonicStore for around a couple thousand"
+    ambiguity: ambiguous
+    gold: null

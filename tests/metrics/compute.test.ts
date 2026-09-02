@@ -82,7 +82,15 @@ describe('metrics: real artifacts + CLAIMS generation', () => {
     expect(rp?.unsafeForwardRate).toBe(0);
     expect(rp?.validPassRate).toBe(1);
     expect(b2?.unsafeForwardRate).toBeGreaterThan(0.8);
-    expect(data.intent).toBeUndefined(); // T16 artifact not present yet
+  });
+
+  it('includes intent metrics when the T16 artifact exists, tolerates its absence', () => {
+    const withIntent = computeAll('eval/artifacts');
+    expect(withIntent.intent?.model).toBe('stub-deterministic');
+    expect(withIntent.intent?.cases).toBeGreaterThanOrEqual(40);
+    const without = computeAll('var/definitely-missing-dir');
+    expect(without.intent).toBeUndefined();
+    expect(without.traces).toHaveLength(0);
   });
 
   it('every CLAIMS row references an existing artifact', () => {
