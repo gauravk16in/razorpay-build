@@ -1,0 +1,29 @@
+{
+  "name": "rupeeproof",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "RupeeProof — Razorpay-native transaction verification and execution-evidence layer for agentic commerce",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "harness": "tsx src/harness/cli.ts",
+    "eval": "tsx src/metrics/report.ts",
+    "eval:intent": "tsx src/adapters/intent.eval.ts",
+    "demo": "tsx src/demo/cli.ts"
+  },
+  "dependencies": {
+    "fastify": "^5.12.1",
+    "json-canonicalize": "^3.0.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

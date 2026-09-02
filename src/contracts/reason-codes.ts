@@ -1,0 +1,23 @@
+// Frozen reason codes — PLAN.md §04. Do not extend without a plan change (§9).
+export const REASON_CODES = [
+  'OK',
+  'AMOUNT_MISMATCH',
+  'MERCHANT_MISMATCH',
+  'CURRENCY_MISMATCH',
+  'ITEMS_MISMATCH',
+  'OVER_LIMIT',
+  'CHECKOUT_CHANGED',
+  'STALE_SNAPSHOT',
+  'SNAPSHOT_UNAVAILABLE',
+  'SNAPSHOT_FROM_FUTURE',
+  'MANDATE_EXPIRED',
+  'MANDATE_CONSUMED',
+  'MANDATE_INVALID',
+  'MERCHANT_BINDING_VIOLATION',
+  'REPLAY_DETECTED',
+  'VERIFIER_ERROR',
+  'EXECUTION_FAILED',
+  'EXECUTION_UNKNOWN',
+] as const;
+
+export type ReasonCode = (typeof REASON_CODES)[number];
