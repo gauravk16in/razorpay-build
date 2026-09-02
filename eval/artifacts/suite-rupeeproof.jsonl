@@ -1,0 +1,14 @@
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"valid-purchase","class":"valid","pass":true,"failures":[],"observed":{"verdict":"ALLOW","reason_codes":["OK"],"razorpay_calls":1}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"amount-mutation","class":"amount-mutation","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["AMOUNT_MISMATCH"],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"merchant-substitution","class":"merchant-substitution","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["MERCHANT_MISMATCH"],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"currency-swap","class":"currency-swap","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["CURRENCY_MISMATCH"],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"items-mutation","class":"items-mutation","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["ITEMS_MISMATCH"],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"over-limit","class":"over-limit","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["AMOUNT_MISMATCH","OVER_LIMIT"],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"replay","class":"replay","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["MANDATE_CONSUMED"],"razorpay_calls":1}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"expired-mandate","class":"expired-mandate","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["MANDATE_EXPIRED","STALE_SNAPSHOT"],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"stale-snapshot","class":"stale-snapshot","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["STALE_SNAPSHOT"],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"checkout-change-reapproval","class":"checkout-change","pass":true,"failures":[],"observed":{"verdict":"ALLOW","reason_codes":["OK"],"razorpay_calls":1}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"tampered-mandate","class":"tampered-mandate","pass":true,"failures":[],"observed":{"verdict":"DENY","reason_codes":["MANDATE_INVALID"],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"webhook-bad-signature","class":"webhook-bad-signature","pass":true,"failures":[],"observed":{"verdict":null,"reason_codes":[],"razorpay_calls":0}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"duplicate-webhook","class":"duplicate-webhook","pass":true,"failures":[],"observed":{"verdict":null,"reason_codes":[],"razorpay_calls":1}}
+{"label":"SYNTHETIC","gate":"rupeeproof","trace_id":"out-of-order-webhook","class":"out-of-order-webhook","pass":true,"failures":[],"observed":{"verdict":null,"reason_codes":[],"razorpay_calls":1}}
