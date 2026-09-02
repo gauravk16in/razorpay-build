@@ -4,13 +4,15 @@
 
 - Planning complete, implementation in progress against `PLAN.md` /
   `TASKS.md` (do not redesign silently — Constitution §9).
-- Done: T02 scaffold, T03 contracts, T04 crypto, T05 ledger, T06 mandate,
-  T07 verifier. **`src/contracts/**` is frozen — do not edit.**
-- Next up: T08 executor, T09 Razorpay adapter (needs `.env` keys + T01 smoke),
-  T10 merchant, T11 webhooks, T12 intent → then T13A integration.
-- Commands: `npm test` (vitest, offline default) · `npm run typecheck` · gate
-  order typecheck → test. `npm run demo|harness|eval` exist but their entry
-  files land in later tasks.
+- Done: T02–T14 (scaffold, contracts, core, adapters, harness, baselines).
+  **`src/contracts/**` is frozen — do not edit.** Harness: 14/14 classes pass;
+  traces: RupeeProof 1000/1000 oracle match, B2 baseline 84/1000 (evidence).
+- Next up: T15 metrics+CLAIMS, T16 intent corpus, T17 demo CLI (live mode
+  needs `.env` keys), T18 README, T19 submission.
+- Commands: `npm test` (vitest, offline default; live Razorpay tests gated by
+  `RZP_LIVE=1`) · `npm run typecheck` · `npm run harness` (add `--seed=42
+  --count=1000 --out=<f> [--gate=b2|b1]` for traces) · gate order typecheck →
+  test → harness.
 - Dedicated git repo lives here (toplevel = this dir), remote `origin` →
   github.com/gauravk16in/razorpay-build. Ask the user before any git mutation.
 

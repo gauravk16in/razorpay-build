@@ -11,7 +11,7 @@ import { Executor } from '../core/executor.js';
 import { buildMerchantApp } from '../merchant/server.js';
 import { buildWebhookApp } from '../webhooks/endpoint.js';
 import { FakeRazorpay } from '../adapters/razorpay.fake.js';
-import type { SnapshotFetchResult } from '../contracts/interfaces.js';
+import type { SnapshotFetchResult, VerifierInput } from '../contracts/interfaces.js';
 import { constraintsFixture } from '../contracts/fixtures.js';
 import {
   CheckoutSnapshotSchema,
@@ -33,6 +33,10 @@ export class SpyRazorpay extends FakeRazorpay {
   }
 }
 
+// Any gate the harness can evaluate: the frozen sync Gate (verifier,
+// cap baseline) or an async judge (LLM baseline). Contracts unchanged.
+export type AnyGate = { decide(input: VerifierInput): Decision | Promise<Decision> };
+
 export interface WiredSystem {
   dir: string;
   clock: { now: number };
@@ -40,6 +44,7 @@ export interface WiredSystem {
   ledger: JsonlLedger;
   mandates: MandateService;
   verifier: Verifier;
+  gate: AnyGate;
   executor: Executor;
   merchant: FastifyInstance;
   webhooks: FastifyInstance;
@@ -58,7 +63,7 @@ export function buildSystem(): WiredSystem {
   const merchant = buildMerchantApp({ clock: () => merchantClock.now });
   const webhooks = buildWebhookApp({ ledger, secret: WEBHOOK_SECRET, clock: () => clock.now });
   const gateway = new SpyRazorpay({ clock: () => clock.now });
-  return { dir, clock, merchantClock, ledger, mandates, verifier, executor, merchant, webhooks, gateway };
+  return { dir, clock, merchantClock, ledger, mandates, verifier, gate: verifier, executor, merchant, webhooks, gateway };
 }
 
 // Snapshot fetcher (PLAN.md §06 #4): fetches ONLY from the mandate-bound
@@ -86,15 +91,20 @@ export async function runAction(
 ): Promise<Decision> {
   const fetched = await fetchSnapshot(sys, mandate);
   const t0 = performance.now();
-  const raw = sys.verifier.decide({ mandate, action, fetched, now: sys.clock.now });
+  const raw = await Promise.resolve(sys.gate.decide({ mandate, action, fetched, now: sys.clock.now }));
   const decision: Decision = { ...raw, latency_ms: performance.now() - t0 };
   await sys.ledger.append('decision.recorded', decision);
   if (decision.verdict === 'ALLOW') {
     const token = await sys.executor.issueToken(decision);
     const record = await sys.executor.execute({ decision, token, gateway: sys.gateway, action });
     // I3: a created order consumes the mandate. FAILED/UNKNOWN leaves it
-    // ACTIVE (reconciliation path, PLAN.md §07).
-    if (record.status === 'CREATED') await sys.mandates.consume(mandate.mandate_id);
+    // ACTIVE (reconciliation path, PLAN.md §07). Consumption is idempotent
+    // here because blind baselines may ALLOW an already-consumed mandate —
+    // that second execution is the unsafe behavior we MEASURE, not crash on.
+    if (record.status === 'CREATED') {
+      const current = sys.mandates.getMandate(mandate.mandate_id);
+      if (current.status === 'ACTIVE') await sys.mandates.consume(mandate.mandate_id);
+    }
   }
   return decision;
 }

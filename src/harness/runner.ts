@@ -1,5 +1,5 @@
 import { rmSync } from 'node:fs';
-import { buildSystem, type WiredSystem } from './wiring.js';
+import { buildSystem, type AnyGate, type WiredSystem } from './wiring.js';
 import { assertObservation, assertSystemInvariants, type Scenario, type ScenarioObservation } from './assert.js';
 
 export interface HarnessResult {
@@ -10,8 +10,9 @@ export interface HarnessResult {
   observation: ScenarioObservation | null;
 }
 
-export async function runScenario(s: Scenario, sys?: WiredSystem): Promise<HarnessResult> {
-  const own = sys ?? buildSystem();
+export async function runScenario(s: Scenario, gate?: AnyGate): Promise<HarnessResult> {
+  const own = buildSystem();
+  if (gate) own.gate = gate;
   try {
     const observation = await s.run(own);
     const failures = [...assertObservation(s, observation), ...assertSystemInvariants(own)];
@@ -29,10 +30,10 @@ export async function runScenario(s: Scenario, sys?: WiredSystem): Promise<Harne
   }
 }
 
-export async function runAll(scenarios: Scenario[]): Promise<HarnessResult[]> {
+export async function runAll(scenarios: Scenario[], gate?: AnyGate): Promise<HarnessResult[]> {
   const results: HarnessResult[] = [];
   for (const s of scenarios) {
-    results.push(await runScenario(s));
+    results.push(await runScenario(s, gate));
   }
   return results;
 }
