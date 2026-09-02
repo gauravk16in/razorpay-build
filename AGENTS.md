@@ -2,27 +2,30 @@
 
 ## Repo state
 
-- Planning complete, pre-implementation: `PLAN.md` is the frozen architecture
-  and task graph (15 sections). Implement against it; do not redesign silently
-  (Constitution §9).
-- There is **no package manifest, build, test, lint, or CI config yet** — the
-  scaffold is task T02 in `PLAN.md`.
-- Stack is frozen (user decision, PLAN.md D1): **TypeScript / Node 22**, zod +
-  vitest + tsx + fastify + json-canonicalize, no Razorpay SDK (raw
-  `fetch`/`node:crypto`), JSONL hash-chained ledger instead of a DB. Planned
-  gate order: `npm run typecheck` → `npm test` → `npm run demo`.
+- Planning complete, implementation in progress against `PLAN.md` /
+  `TASKS.md` (do not redesign silently — Constitution §9).
+- Done: T02 scaffold, T03 contracts, T04 crypto, T05 ledger, T06 mandate,
+  T07 verifier. **`src/contracts/**` is frozen — do not edit.**
+- Next up: T08 executor, T09 Razorpay adapter (needs `.env` keys + T01 smoke),
+  T10 merchant, T11 webhooks, T12 intent → then T13A integration.
+- Commands: `npm test` (vitest, offline default) · `npm run typecheck` · gate
+  order typecheck → test. `npm run demo|harness|eval` exist but their entry
+  files land in later tasks.
+- Dedicated git repo lives here (toplevel = this dir), remote `origin` →
+  github.com/gauravk16in/razorpay-build. Ask the user before any git mutation.
 
-## Git trap — read before ANY git command
+## Git — read before ANY git command
 
-- `git rev-parse --show-toplevel` here returns `/Users/kr`: the git repo root is
-  the **entire home directory**, with zero commits. This project dir has no
-  `.git` of its own.
-- `git add -A`, `git commit`, `git stash`, etc. from here operate on the
-  home-wide repo and would stage the whole home directory — including `~/.ssh`,
-  `~/.aws`, and API keys under `~/.config/opencode/`. Do not run git staging or
-  commit commands until a dedicated repo exists for this project; ask the user
-  first.
-- Submission requires a **public** GitHub repo. Secrets must never enter it.
+- This project has its **own dedicated repo** (initialized 2 Sep 2026);
+  `git rev-parse --show-toplevel` from here returns `/Users/kr/razorpay-build`.
+- **However**: a separate git repo still exists at `/Users/kr` (the whole home
+  directory, zero commits). Running git commands from anywhere OUTSIDE this
+  project dir operates on the home-wide repo — staging there would sweep up
+  `~/.ssh`, `~/.aws`, API keys. Only run git from within this project.
+- Ask the user before every git mutation (commit, push, etc.), even if
+  earlier sessions committed.
+- Submission requires a **public** GitHub repo. Secrets must never enter it:
+  `.env` is gitignored; scan before making the repo public (TASKS.md T19).
 
 ## Governing documents (read in this order)
 
